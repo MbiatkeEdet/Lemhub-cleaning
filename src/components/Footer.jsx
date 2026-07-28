@@ -1,0 +1,46 @@
+export default function Footer() {
+  return (
+    <footer className="border-t border-mist bg-linen-dim">
+      <div className="mx-auto max-w-6xl px-6 py-14 grid gap-10 md:grid-cols-3">
+        <div>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-pine text-linen font-display text-xs">
+              LC
+            </span>
+            <span className="font-display text-lg text-ink">LuxeClean</span>
+          </div>
+          <p className="text-sm text-ink/60 leading-relaxed max-w-xs">
+            Every cleaner on our roster is background-checked, trained, and
+            personally vetted before they're issued a seal.
+          </p>
+        </div>
+
+        <div>
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-ink/50 mb-4">
+            Explore
+          </p>
+          <ul className="space-y-2 text-sm text-ink/70">
+            <li>Our Cleaners</li>
+            <li>Book a Clean</li>
+            <li>Agency Portal</li>
+            <li>Pricing</li>
+          </ul>
+        </div>
+
+        <div>
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-ink/50 mb-4">
+            Serving
+          </p>
+          <p className="text-sm text-ink/70 leading-relaxed">
+            Port Harcourt &amp; surrounding areas
+            <br />
+            Mon – Sat, 7:00am – 7:00pm
+          </p>
+        </div>
+      </div>
+      <div className="border-t border-mist px-6 py-6 text-center font-mono text-[11px] uppercase tracking-[0.14em] text-ink/40">
+        © {new Date().getFullYear()} Luxe Clean — Premium Home Cleaning
+      </div>
+    </footer>
+  );
+}

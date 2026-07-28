@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", ui-serif, serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-linen: #F6F3EC;
+  --color-linen-dim: #EEEAE0;
+  --color-ink: #1B211E;
+  --color-pine: #1F3B34;
+  --color-pine-light: #2C5347;
+  --color-sage: #8CA089;
+  --color-sage-dim: #C7D1C2;
+  --color-brass: #B08D57;
+  --color-brass-light: #D2AE7B;
+  --color-mist: #E4E1D6;
+  --color-clay: #A6482E;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-linen);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* subtle woven-linen texture */
+.texture-linen {
+  background-image:
+    repeating-linear-gradient(0deg, rgba(31,59,52,0.035) 0px, rgba(31,59,52,0.035) 1px, transparent 1px, transparent 3px),
+    repeating-linear-gradient(90deg, rgba(31,59,52,0.035) 0px, rgba(31,59,52,0.035) 1px, transparent 1px, transparent 3px);
+}
+
+.seal-ring {
+  background-image: repeating-conic-gradient(from 0deg, var(--color-brass) 0deg 2deg, transparent 2deg 10deg);
+}
+
+::selection {
+  background: var(--color-brass);
+  color: var(--color-linen);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
