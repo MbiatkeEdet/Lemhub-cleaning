@@ -28,8 +28,14 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section className="texture-linen relative overflow-hidden border-b border-mist">
-        <div className="mx-auto max-w-6xl px-6 py-24 md:py-32 grid md:grid-cols-[1.2fr_0.8fr] gap-16 items-center">
+      <section className="texture-linen relative isolate overflow-hidden border-b border-mist">
+        <img
+          src="/cleaning2.jpg"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover opacity-60 scale-105"
+        />
+        <div className="absolute inset-0 bg-linen/55" />
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-24 md:py-32 grid md:grid-cols-[1.2fr_0.8fr] gap-16 items-center">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.16em] text-brass mb-6">
               Verified cleaners · Port Harcourt
@@ -73,12 +79,23 @@ export default function Home() {
 
       {/* How it works */}
       <section className="mx-auto max-w-6xl px-6 py-24">
-        <p className="font-mono text-xs uppercase tracking-[0.14em] text-ink/45 mb-3">
-          How it works
-        </p>
-        <h2 className="font-display text-3xl text-ink mb-12 max-w-lg">
-          Three steps between you and a spotless apartment.
-        </h2>
+        <div className="mb-12 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-[0.14em] text-ink/45 mb-3">
+              How it works
+            </p>
+            <h2 className="font-display text-3xl text-ink max-w-lg">
+              Three steps between you and a spotless apartment.
+            </h2>
+          </div>
+          <div className="w-full max-w-md rounded-[2rem] border border-mist bg-linen-dim p-3 shadow-[0_20px_60px_rgba(33,36,31,0.08)]">
+            <img
+              src="/cleaning1.jpg"
+              alt="A bright, tidy apartment setting the tone for LuxeClean"
+              className="h-72 w-full rounded-[1.5rem] object-cover"
+            />
+          </div>
+        </div>
         <div className="grid md:grid-cols-3 gap-10">
           {steps.map((s) => (
             <div key={s.n} className="border-t border-mist pt-6">

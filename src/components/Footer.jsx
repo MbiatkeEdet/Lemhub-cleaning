@@ -39,7 +39,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-mist px-6 py-6 text-center font-mono text-[11px] uppercase tracking-[0.14em] text-ink/40">
-        © {new Date().getFullYear()} Luxe Clean — Premium Home Cleaning
+        © {new Date().getFullYear()} LuxeClean — Premium Home Cleaning
       </div>
     </footer>
   );
