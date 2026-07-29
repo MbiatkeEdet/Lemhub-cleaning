@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useApp } from "../context/AppContext";
 import SealBadge from "../components/SealBadge";
 
@@ -10,11 +10,40 @@ const emptyForm = {
   areas: "",
 };
 
+const ADMIN_PASSWORD = "LuxeCleanAdmin";
+const ACCESS_KEY = "agency-portal-access";
+
 export default function AgencyPortal() {
   const { cleaners, addCleaner, removeCleaner, bookings } = useApp();
   const [form, setForm] = useState(emptyForm);
   const [justAdded, setJustAdded] = useState(null);
   const [error, setError] = useState("");
+  const [password, setPassword] = useState("");
+  const [isAuthorized, setIsAuthorized] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return sessionStorage.getItem(ACCESS_KEY) === "true";
+  });
+
+  useEffect(() => {
+    if (isAuthorized) {
+      sessionStorage.setItem(ACCESS_KEY, "true");
+    } else {
+      sessionStorage.removeItem(ACCESS_KEY);
+    }
+  }, [isAuthorized]);
+
+  function handlePasswordSubmit(e) {
+    e.preventDefault();
+    if (password === ADMIN_PASSWORD) {
+      setIsAuthorized(true);
+      setError("");
+      setPassword("");
+      return;
+    }
+
+    setError("Incorrect admin password.");
+    setPassword("");
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -40,18 +69,61 @@ export default function AgencyPortal() {
     setForm(emptyForm);
   }
 
+  if (!isAuthorized) {
+    return (
+      <div className="mx-auto flex min-h-[70vh] max-w-md items-center justify-center px-6 py-20">
+        <div className="w-full rounded-[2rem] border border-mist bg-white/70 p-8 text-center shadow-[0_20px_60px_rgba(33,36,31,0.08)]">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-ink/45 mb-3">
+            Restricted area
+          </p>
+          <h1 className="font-display text-3xl text-ink">Admin access required</h1>
+          <p className="mt-4 text-sm leading-relaxed text-ink/60">
+            This portal is reserved for the agency admin. Enter the password to continue.
+          </p>
+
+          <form onSubmit={handlePasswordSubmit} className="mt-8 text-left">
+            <Field
+              label="Admin password"
+              value={password}
+              onChange={setPassword}
+              placeholder="Enter password"
+              type="password"
+            />
+            {error && <p className="mt-3 text-sm text-clay">{error}</p>}
+            <button
+              type="submit"
+              className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-pine px-7 py-3.5 font-mono text-xs uppercase tracking-[0.14em] text-linen hover:bg-pine-light transition-colors"
+            >
+              Enter portal
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="mx-auto max-w-6xl px-6 py-20">
-      <p className="font-mono text-xs uppercase tracking-[0.14em] text-ink/45 mb-3">
-        Agency portal
-      </p>
-      <h1 className="font-display text-4xl text-ink mb-4">
-        Issue the seal to a new cleaner.
-      </h1>
-      <p className="text-ink/60 leading-relaxed mb-12 max-w-lg">
-        Add cleaners who have completed background checks and an in-home
-        trial. They'll appear on the client-facing roster immediately.
-      </p>
+      <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-ink/45 mb-3">
+            Agency portal
+          </p>
+          <h1 className="font-display text-4xl text-ink mb-4">
+            Issue the seal to a new cleaner.
+          </h1>
+          <p className="text-ink/60 leading-relaxed max-w-lg">
+            Add cleaners who have completed background checks and an in-home
+            trial. They'll appear on the client-facing roster immediately.
+          </p>
+        </div>
+        <button
+          onClick={() => setIsAuthorized(false)}
+          className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink/55 hover:text-ink"
+        >
+          Logout
+        </button>
+      </div>
 
       <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12">
         <form onSubmit={handleSubmit} className="rounded-2xl border border-mist bg-white/60 p-8">
