@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useApp } from "../context/AppContext";
 
 const links = [
   { to: "/", label: "Home", end: true },
@@ -10,6 +11,7 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { user, logout } = useApp();
 
   return (
     <header className="sticky top-0 z-50 bg-linen/95 backdrop-blur border-b border-mist">
@@ -42,12 +44,29 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <NavLink
-            to="/book"
-            className="hidden md:inline-flex items-center rounded-full bg-pine px-5 py-2.5 font-mono text-xs uppercase tracking-[0.14em] text-linen transition-colors hover:bg-pine-light"
-          >
-            Get a Quote
-          </NavLink>
+          <div className="hidden md:flex items-center gap-3">
+            <NavLink
+              to="/kyc"
+              className="font-mono text-xs uppercase tracking-[0.14em] text-ink/70 hover:text-ink"
+            >
+              {user.isLoggedIn ? "KYC" : "Verify"}
+            </NavLink>
+            {user.isLoggedIn ? (
+              <button
+                onClick={logout}
+                className="inline-flex items-center rounded-full border border-ink/20 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-ink"
+              >
+                Logout
+              </button>
+            ) : (
+              <NavLink
+                to="/kyc"
+                className="inline-flex items-center rounded-full bg-pine px-5 py-2.5 font-mono text-xs uppercase tracking-[0.14em] text-linen transition-colors hover:bg-pine-light"
+              >
+                Get Verified
+              </NavLink>
+            )}
+          </div>
 
           <button
             onClick={() => setOpen((v) => !v)}
@@ -75,11 +94,11 @@ export default function Navbar() {
             </NavLink>
           ))}
           <NavLink
-            to="/book"
+            to="/kyc"
             onClick={() => setOpen(false)}
             className="mt-2 inline-flex w-fit items-center rounded-full bg-pine px-5 py-2.5 font-mono text-xs uppercase tracking-[0.14em] text-linen"
           >
-            Get a Quote
+            {user.isLoggedIn ? "Continue KYC" : "Get Verified"}
           </NavLink>
         </nav>
       )}

@@ -5,6 +5,7 @@ export const APARTMENT_TYPES = [
   { id: "2bed", label: "2 Bedroom", subtitle: "2 bed · 1-2 bath", base: 28000 },
   { id: "3bed", label: "3 Bedroom", subtitle: "3 bed · 2 bath", base: 38000 },
   { id: "4bed", label: "4+ Bedroom", subtitle: "Duplex / townhouse", base: 50000 },
+  {id: "5bed", label: "5+ Bedroom", subtitle: "Large homes / estates", base: 65000}
 ];
 
 // Frequency plans: visits per month + per-visit discount multiplier

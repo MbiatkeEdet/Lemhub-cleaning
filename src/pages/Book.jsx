@@ -7,7 +7,7 @@ import { calculatePrice, currency } from "../data/pricing";
 const emptyForm = { name: "", phone: "", address: "" };
 
 export default function Book() {
-  const { addBooking } = useApp();
+  const { addBooking, user } = useApp();
   const [apartmentId, setApartmentId] = useState("1bed");
   const [frequencyId, setFrequencyId] = useState("biweekly");
   const [form, setForm] = useState(emptyForm);
@@ -32,6 +32,30 @@ export default function Book() {
       monthlyTotal: price.monthlyTotal,
     });
     setConfirmed(booking);
+  }
+
+  if (!user.fullKycCompleted) {
+    return (
+      <div className="mx-auto max-w-2xl px-6 py-24 text-center">
+        <div className="rounded-[2rem] border border-mist bg-white/70 p-10 shadow-[0_20px_60px_rgba(33,36,31,0.08)]">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-ink/45 mb-3">
+            Verification required
+          </p>
+          <h1 className="font-display text-3xl text-ink mb-4">
+            Complete full KYC before booking a cleaner.
+          </h1>
+          <p className="text-ink/60 leading-relaxed mb-8">
+            We need your verified identity details before we can arrange a cleaning appointment for you.
+          </p>
+          <a
+            href="/kyc"
+            className="inline-flex items-center rounded-full bg-pine px-8 py-3.5 font-mono text-xs uppercase tracking-[0.14em] text-linen hover:bg-pine-light transition-colors"
+          >
+            Complete KYC
+          </a>
+        </div>
+      </div>
+    );
   }
 
   if (confirmed) {

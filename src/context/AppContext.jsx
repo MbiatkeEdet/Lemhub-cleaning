@@ -5,6 +5,24 @@ const AppContext = createContext(null);
 
 const CLEANERS_KEY = "linenpress_cleaners";
 const BOOKINGS_KEY = "linenpress_bookings";
+const USER_KEY = "linenpress_user";
+
+const DEFAULT_PROFILE = {
+  fullName: "",
+  email: "",
+  phone: "",
+  address: "",
+  idNumber: "",
+  dob: "",
+  purpose: "",
+};
+
+const DEFAULT_USER = {
+  isLoggedIn: false,
+  basicKycCompleted: false,
+  fullKycCompleted: false,
+  profile: DEFAULT_PROFILE,
+};
 
 function loadCleaners() {
   try {
@@ -26,9 +44,30 @@ function loadBookings() {
   return [];
 }
 
+function loadUser() {
+  try {
+    const raw = localStorage.getItem(USER_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      return {
+        ...DEFAULT_USER,
+        ...parsed,
+        profile: {
+          ...DEFAULT_PROFILE,
+          ...(parsed.profile || {}),
+        },
+      };
+    }
+  } catch {
+    // fall through
+  }
+  return { ...DEFAULT_USER };
+}
+
 export function AppProvider({ children }) {
   const [cleaners, setCleaners] = useState(loadCleaners);
   const [bookings, setBookings] = useState(loadBookings);
+  const [user, setUser] = useState(loadUser);
 
   useEffect(() => {
     localStorage.setItem(CLEANERS_KEY, JSON.stringify(cleaners));
@@ -37,6 +76,10 @@ export function AppProvider({ children }) {
   useEffect(() => {
     localStorage.setItem(BOOKINGS_KEY, JSON.stringify(bookings));
   }, [bookings]);
+
+  useEffect(() => {
+    localStorage.setItem(USER_KEY, JSON.stringify(user));
+  }, [user]);
 
   function addCleaner(data) {
     const record = {
@@ -66,12 +109,43 @@ export function AppProvider({ children }) {
     return record;
   }
 
+  function completeBasicKyc(data) {
+    setUser((prev) => ({
+      ...prev,
+      isLoggedIn: true,
+      basicKycCompleted: true,
+      profile: {
+        ...prev.profile,
+        ...data,
+      },
+    }));
+  }
+
+  function completeFullKyc(data) {
+    setUser((prev) => ({
+      ...prev,
+      fullKycCompleted: true,
+      profile: {
+        ...prev.profile,
+        ...data,
+      },
+    }));
+  }
+
+  function logout() {
+    setUser({ ...DEFAULT_USER });
+  }
+
   const value = {
     cleaners,
     addCleaner,
     removeCleaner,
     bookings,
     addBooking,
+    user,
+    completeBasicKyc,
+    completeFullKyc,
+    logout,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
