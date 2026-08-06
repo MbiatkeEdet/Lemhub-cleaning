@@ -18,8 +18,8 @@ export default function Navbar() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex h-20 items-center justify-between">
           <NavLink to="/" className="flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-pine text-linen font-display text-sm">
-              TN
+            <span className="flex h-20 w-20 items-center justify-center rounded-full border border-mist bg-white shadow-sm overflow-hidden">
+              <img src="/Tidynow1.png" alt="TidyNow logo" className="h-full w-full object-cover" />
             </span>
             <span className="font-display text-xl tracking-tight text-ink">
               TidyNow

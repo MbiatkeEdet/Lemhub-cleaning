@@ -6,8 +6,8 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-6 py-14 grid gap-10 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-3 mb-4">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-pine text-linen font-display text-xs">
-              TN
+            <span className="flex h-30 w-30 items-center justify-center rounded-full border border-mist bg-white shadow-sm overflow-hidden">
+              <img src="/Tidynow1.png" alt="TidyNow logo" className="h-full w-full object-cover" />
             </span>
             <span className="font-display text-lg text-ink">TidyNow</span>
           </div>
