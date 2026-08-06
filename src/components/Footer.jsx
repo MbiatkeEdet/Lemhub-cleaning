@@ -9,7 +9,10 @@ export default function Footer() {
             <span className="flex h-30 w-30 items-center justify-center rounded-full border border-mist bg-white shadow-sm overflow-hidden">
               <img src="/Tidynow1.png" alt="TidyNow logo" className="h-full w-full object-cover" />
             </span>
-            <span className="font-display text-lg text-ink">TidyNow</span>
+            <div>
+              <div className="font-display text-lg text-ink">TidyNow</div>
+                <div className="text-[15px] font-mono text-ink/60">Cleaner spaces · Better living</div>
+            </div>
           </div>
           <p className="text-sm text-ink/60 leading-relaxed max-w-xs">
             Every cleaner on our roster is background-checked, trained, and

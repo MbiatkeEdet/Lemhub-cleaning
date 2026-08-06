@@ -21,9 +21,10 @@ export default function Navbar() {
             <span className="flex h-20 w-20 items-center justify-center rounded-full border border-mist bg-white shadow-sm overflow-hidden">
               <img src="/Tidynow1.png" alt="TidyNow logo" className="h-full w-full object-cover" />
             </span>
-            <span className="font-display text-xl tracking-tight text-ink">
-              TidyNow
-            </span>
+            <div className="leading-tight">
+              <div className="font-display text-xl tracking-tight text-ink">TidyNow</div>
+                <div className="mt-0.5 text-[15px] font-mono text-ink/60">Cleaner spaces · Better living</div>
+            </div>
           </NavLink>
 
           <nav className="hidden md:flex items-center gap-10">
