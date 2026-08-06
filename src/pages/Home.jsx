@@ -46,7 +46,7 @@ export default function Home() {
               <span className="italic text-pine">sealed</span> by verification.
             </h1>
             <p className="mt-6 max-w-md text-ink/65 leading-relaxed">
-              LuxeClean connects your apartment with cleaners from Port
+              TidyNow connects your apartment with cleaners from Port
               Harcourt and surrounding Rivers State communities. Our team
               understands local customs, languages, and household
               preferences — every cleaner has passed background checks,

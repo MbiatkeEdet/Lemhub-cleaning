@@ -7,9 +7,9 @@ export default function Footer() {
         <div>
           <div className="flex items-center gap-3 mb-4">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-pine text-linen font-display text-xs">
-              LC
+              TN
             </span>
-            <span className="font-display text-lg text-ink">LuxeClean</span>
+            <span className="font-display text-lg text-ink">TidyNow</span>
           </div>
           <p className="text-sm text-ink/60 leading-relaxed max-w-xs">
             Every cleaner on our roster is background-checked, trained, and
@@ -58,7 +58,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-mist px-6 py-6 text-center font-mono text-[11px] uppercase tracking-[0.14em] text-ink/40">
-        © {new Date().getFullYear()} LuxeClean — Premium Home Cleaning
+        © {new Date().getFullYear()} TidyNow — Premium Home Cleaning
       </div>
     </footer>
   );
