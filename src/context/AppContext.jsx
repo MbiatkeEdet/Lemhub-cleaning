@@ -21,6 +21,7 @@ const DEFAULT_USER = {
   isLoggedIn: false,
   basicKycCompleted: false,
   fullKycCompleted: false,
+  isAdmin: false,
   profile: DEFAULT_PROFILE,
 };
 
@@ -110,10 +111,13 @@ export function AppProvider({ children }) {
   }
 
   function completeBasicKyc(data) {
+    const isAdmin = (data.email || "").toLowerCase() === "admin@luxeclean.com";
+
     setUser((prev) => ({
       ...prev,
       isLoggedIn: true,
       basicKycCompleted: true,
+      isAdmin,
       profile: {
         ...prev.profile,
         ...data,

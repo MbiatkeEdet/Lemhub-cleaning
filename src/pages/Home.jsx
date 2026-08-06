@@ -28,17 +28,17 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section className="texture-linen relative isolate overflow-hidden border-b border-mist">
+      <section className="texture-linen relative overflow-hidden border-b border-mist">
         <img
           src="/cleaning2.jpg"
           alt=""
           className="absolute inset-0 h-full w-full object-cover opacity-60 scale-105"
         />
-        <div className="absolute inset-0 bg-linen/55" />
+        <div className="absolute inset-0 bg-linen/45" />
         <div className="relative z-10 mx-auto max-w-6xl px-6 py-24 md:py-32 grid md:grid-cols-[1.2fr_0.8fr] gap-16 items-center">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.16em] text-brass mb-6">
-              Verified cleaners · Port Harcourt
+              Verified cleaners · Port Harcourt, Rivers State, Nigeria
             </p>
             <h1 className="font-display text-5xl md:text-6xl leading-[1.05] text-ink">
               Every clean,
@@ -46,9 +46,12 @@ export default function Home() {
               <span className="italic text-pine">sealed</span> by verification.
             </h1>
             <p className="mt-6 max-w-md text-ink/65 leading-relaxed">
-              LuxeClean connects your apartment with cleaners who've
-              passed our background check, in-home trial, and standards
-              review — marked by a single seal you can trust.
+              LuxeClean connects your apartment with cleaners from Port
+              Harcourt and surrounding Rivers State communities. Our team
+              understands local customs, languages, and household
+              preferences — every cleaner has passed background checks,
+              in-home trials, and standards review, marked by a seal you
+              can trust.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <Link

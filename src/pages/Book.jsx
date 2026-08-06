@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PriceCalculator from "../components/PriceCalculator";
 import SealBadge from "../components/SealBadge";
 import { useApp } from "../context/AppContext";
@@ -8,6 +9,7 @@ const emptyForm = { name: "", phone: "", address: "" };
 
 export default function Book() {
   const { addBooking, user } = useApp();
+  const navigate = useNavigate();
   const [apartmentId, setApartmentId] = useState("1bed");
   const [frequencyId, setFrequencyId] = useState("biweekly");
   const [form, setForm] = useState(emptyForm);
@@ -47,12 +49,13 @@ export default function Book() {
           <p className="text-ink/60 leading-relaxed mb-8">
             We need your verified identity details before we can arrange a cleaning appointment for you.
           </p>
-          <a
-            href="/kyc"
+          <button
+            type="button"
+            onClick={() => navigate('/kyc', { state: { step: user.basicKycCompleted ? 2 : 1 } })}
             className="inline-flex items-center rounded-full bg-pine px-8 py-3.5 font-mono text-xs uppercase tracking-[0.14em] text-linen hover:bg-pine-light transition-colors"
           >
             Complete KYC
-          </a>
+          </button>
         </div>
       </div>
     );

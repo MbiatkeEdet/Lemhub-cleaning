@@ -4,7 +4,6 @@ import { useApp } from "../context/AppContext";
 
 const links = [
   { to: "/", label: "Home", end: true },
-  { to: "/cleaners", label: "Our Cleaners" },
   { to: "/book", label: "Book a Clean" },
   { to: "/agency", label: "Agency Portal" },
 ];
@@ -45,12 +44,6 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden md:flex items-center gap-3">
-            <NavLink
-              to="/kyc"
-              className="font-mono text-xs uppercase tracking-[0.14em] text-ink/70 hover:text-ink"
-            >
-              {user.isLoggedIn ? "KYC" : "Verify"}
-            </NavLink>
             {user.isLoggedIn ? (
               <button
                 onClick={logout}
@@ -58,14 +51,7 @@ export default function Navbar() {
               >
                 Logout
               </button>
-            ) : (
-              <NavLink
-                to="/kyc"
-                className="inline-flex items-center rounded-full bg-pine px-5 py-2.5 font-mono text-xs uppercase tracking-[0.14em] text-linen transition-colors hover:bg-pine-light"
-              >
-                Get Verified
-              </NavLink>
-            )}
+            ) : null}
           </div>
 
           <button
@@ -93,13 +79,6 @@ export default function Navbar() {
               {l.label}
             </NavLink>
           ))}
-          <NavLink
-            to="/kyc"
-            onClick={() => setOpen(false)}
-            className="mt-2 inline-flex w-fit items-center rounded-full bg-pine px-5 py-2.5 font-mono text-xs uppercase tracking-[0.14em] text-linen"
-          >
-            {user.isLoggedIn ? "Continue KYC" : "Get Verified"}
-          </NavLink>
         </nav>
       )}
     </header>

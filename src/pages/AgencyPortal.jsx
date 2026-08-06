@@ -71,12 +71,14 @@ export default function AgencyPortal() {
 
   if (!isAuthorized) {
     return (
-      <div className="mx-auto flex min-h-[70vh] max-w-md items-center justify-center px-6 py-20">
-        <div className="w-full rounded-[2rem] border border-mist bg-white/70 p-8 text-center shadow-[0_20px_60px_rgba(33,36,31,0.08)]">
+      <div className="mx-auto flex min-h-[70vh] max-w-md items-center justify-center px-4 py-12 sm:px-6 sm:py-20">
+        <div className="w-full rounded-[2rem] border border-mist bg-white/70 p-6 text-center shadow-[0_20px_60px_rgba(33,36,31,0.08)] sm:p-8">
           <p className="font-mono text-xs uppercase tracking-[0.14em] text-ink/45 mb-3">
             Restricted area
           </p>
-          <h1 className="font-display text-3xl text-ink">Admin access required</h1>
+          <h1 className="font-display text-2xl text-ink sm:text-3xl">
+            Admin access required
+          </h1>
           <p className="mt-4 text-sm leading-relaxed text-ink/60">
             This portal is reserved for the agency admin. Enter the password to continue.
           </p>
@@ -92,7 +94,7 @@ export default function AgencyPortal() {
             {error && <p className="mt-3 text-sm text-clay">{error}</p>}
             <button
               type="submit"
-              className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-pine px-7 py-3.5 font-mono text-xs uppercase tracking-[0.14em] text-linen hover:bg-pine-light transition-colors"
+              className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-pine px-7 py-3.5 font-mono text-xs uppercase tracking-[0.14em] text-linen transition-colors hover:bg-pine-light"
             >
               Enter portal
             </button>
@@ -103,30 +105,30 @@ export default function AgencyPortal() {
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-20">
-      <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.14em] text-ink/45 mb-3">
             Agency portal
           </p>
-          <h1 className="font-display text-4xl text-ink mb-4">
+          <h1 className="font-display mb-4 text-3xl text-ink sm:text-4xl">
             Issue the seal to a new cleaner.
           </h1>
-          <p className="text-ink/60 leading-relaxed max-w-lg">
+          <p className="max-w-lg text-sm leading-relaxed text-ink/60 sm:text-base">
             Add cleaners who have completed background checks and an in-home
             trial. They'll appear on the client-facing roster immediately.
           </p>
         </div>
         <button
           onClick={() => setIsAuthorized(false)}
-          className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink/55 hover:text-ink"
+          className="self-start font-mono text-[11px] uppercase tracking-[0.12em] text-ink/55 transition-colors hover:text-ink sm:self-auto"
         >
           Logout
         </button>
       </div>
 
-      <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12">
-        <form onSubmit={handleSubmit} className="rounded-2xl border border-mist bg-white/60 p-8">
+      <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-12">
+        <form onSubmit={handleSubmit} className="rounded-2xl border border-mist bg-white/60 p-5 sm:p-8">
           <div className="grid gap-5">
             <Field
               label="Full name"
@@ -165,7 +167,7 @@ export default function AgencyPortal() {
 
           <button
             type="submit"
-            className="mt-7 inline-flex items-center rounded-full bg-pine px-7 py-3.5 font-mono text-xs uppercase tracking-[0.14em] text-linen hover:bg-pine-light transition-colors"
+            className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-pine px-7 py-3.5 font-mono text-xs uppercase tracking-[0.14em] text-linen transition-colors hover:bg-pine-light sm:w-auto"
           >
             Verify &amp; add cleaner
           </button>
@@ -181,17 +183,17 @@ export default function AgencyPortal() {
           )}
         </form>
 
-        <div>
-          <div className="flex items-center justify-between mb-5">
+        <div className="min-w-0">
+          <div className="mb-5 flex items-center justify-between">
             <p className="font-mono text-xs uppercase tracking-[0.14em] text-ink/50">
               Current roster ({cleaners.length})
             </p>
           </div>
-          <div className="grid gap-4 max-h-[420px] overflow-y-auto pr-1">
+          <div className="grid max-h-[420px] gap-4 overflow-y-auto pr-1">
             {cleaners.map((c) => (
               <div
                 key={c.id}
-                className="flex items-center justify-between rounded-xl border border-mist bg-white/50 px-5 py-4"
+                className="flex flex-col gap-3 rounded-xl border border-mist bg-white/50 px-5 py-4 sm:flex-row sm:items-center sm:justify-between"
               >
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-pine/10 font-display text-sm text-pine">
@@ -206,7 +208,7 @@ export default function AgencyPortal() {
                 </div>
                 <button
                   onClick={() => removeCleaner(c.id)}
-                  className="font-mono text-[11px] uppercase tracking-[0.1em] text-clay/70 hover:text-clay"
+                  className="font-mono text-[11px] uppercase tracking-[0.1em] text-clay/70 transition-colors hover:text-clay"
                 >
                   Remove
                 </button>
@@ -214,25 +216,25 @@ export default function AgencyPortal() {
             ))}
           </div>
 
-          <p className="font-mono text-xs uppercase tracking-[0.14em] text-ink/50 mt-10 mb-5">
+          <p className="mt-10 mb-5 font-mono text-xs uppercase tracking-[0.14em] text-ink/50">
             Recent booking requests ({bookings.length})
           </p>
           {bookings.length === 0 ? (
             <p className="text-sm text-ink/45">No requests yet.</p>
           ) : (
-            <div className="grid gap-3 max-h-[280px] overflow-y-auto pr-1">
+            <div className="grid max-h-[280px] gap-3 overflow-y-auto pr-1">
               {bookings.map((b) => (
                 <div
                   key={b.id}
                   className="rounded-xl border border-mist bg-white/50 px-5 py-4"
                 >
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                     <p className="font-display text-ink">{b.client.name}</p>
                     <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-brass">
                       {b.status}
                     </span>
                   </div>
-                  <p className="text-xs text-ink/50 mt-1">
+                  <p className="mt-1 text-xs text-ink/50">
                     {b.apartmentLabel} · {b.frequencyLabel} · {b.client.address}
                   </p>
                 </div>

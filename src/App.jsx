@@ -2,11 +2,10 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
-import Cleaners from "./pages/Cleaners";
 import Book from "./pages/Book";
 import AgencyPortal from "./pages/AgencyPortal";
 import Kyc from "./pages/Kyc";
-import Landing from "./pages/Landing";
+// Landing page removed — Home is now the public entry
 import { useApp } from "./context/AppContext";
 
 export default function App() {
@@ -14,26 +13,16 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {user.isLoggedIn ? <Navbar /> : null}
+      <Navbar />
       <main className="flex-1">
         <Routes>
-          <Route path="/" element={user.isLoggedIn ? <Home /> : <Landing />} />
-          <Route path="/cleaners" element={user.isLoggedIn ? <Cleaners /> : <Navigate to="/" replace />} />
-          <Route path="/kyc" element={user.isLoggedIn ? <Kyc /> : <Navigate to="/" replace />} />
-          <Route
-            path="/book"
-            element={
-              user.isLoggedIn && user.basicKycCompleted && user.fullKycCompleted ? (
-                <Book />
-              ) : (
-                <Navigate to="/kyc" replace />
-              )
-            }
-          />
-          <Route path="/agency" element={user.isLoggedIn ? <AgencyPortal /> : <Navigate to="/" replace />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/kyc" element={<Kyc />} />
+          <Route path="/book" element={<Book />} />
+          <Route path="/agency" element={<AgencyPortal />} />
         </Routes>
       </main>
-      {user.isLoggedIn ? <Footer /> : null}
+      <Footer />
     </div>
   );
 }

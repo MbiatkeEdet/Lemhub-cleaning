@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   return (
     <footer className="border-t border-mist bg-linen-dim">
@@ -20,10 +22,26 @@ export default function Footer() {
             Explore
           </p>
           <ul className="space-y-2 text-sm text-ink/70">
-            <li>Our Cleaners</li>
-            <li>Book a Clean</li>
-            <li>Agency Portal</li>
-            <li>Pricing</li>
+            <li>
+              <Link to="/cleaners" className="hover:text-ink transition-colors">
+                Our Cleaners
+              </Link>
+            </li>
+            <li>
+              <Link to="/book" className="hover:text-ink transition-colors">
+                Book a Clean
+              </Link>
+            </li>
+            <li>
+              <Link to="/agency" className="hover:text-ink transition-colors">
+                Agency Portal
+              </Link>
+            </li>
+            <li>
+              <Link to="/book" className="hover:text-ink transition-colors">
+                Pricing
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -32,7 +50,8 @@ export default function Footer() {
             Serving
           </p>
           <p className="text-sm text-ink/70 leading-relaxed">
-            Port Harcourt &amp; surrounding areas
+            Port Harcourt, Rivers State, Nigeria — honoring local cultural
+            identities and household customs.
             <br />
             Mon – Sat, 7:00am – 7:00pm
           </p>
