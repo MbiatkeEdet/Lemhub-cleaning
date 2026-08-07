@@ -1,4 +1,4 @@
-# Linen & Press — Premium Verified Home Cleaning
+# TidyNow — Premium Verified Home Cleaning
 
 A scaffolded booking platform for a premium home-cleaning agency, built with **Vite + React (JavaScript) + Tailwind CSS v4**.
 

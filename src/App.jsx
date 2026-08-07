@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Book from "./pages/Book";
 import AgencyPortal from "./pages/AgencyPortal";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
 import Kyc from "./pages/Kyc";
 // Landing page removed — Home is now the public entry
 import { useApp } from "./context/AppContext";
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="/kyc" element={<Kyc />} />
           <Route path="/book" element={<Book />} />
           <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/agency" element={<AgencyPortal />} />
         </Routes>
       </main>
