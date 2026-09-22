@@ -3,15 +3,17 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   return (
     <footer className="border-t border-mist bg-linen-dim">
-      <div className="mx-auto max-w-6xl px-6 py-14 grid gap-10 md:grid-cols-3">
-        <div>
+      <div className="mx-auto max-w-6xl px-6 py-14 grid gap-10 md:grid-cols-4">
+        <div className="md:col-span-1">
           <div className="flex items-center gap-3 mb-4">
-            <span className="flex h-30 w-30 items-center justify-center rounded-full border border-mist bg-white shadow-sm overflow-hidden">
-              <img src="/Tidynow1.png" alt="TidyNow logo" className="h-full w-full object-cover" />
-            </span>
+            <img
+              src="/Tidynow1.png"
+              alt="TidyNow logo"
+              className="h-16 w-16 shrink-0 object-contain mix-blend-multiply"
+            />
             <div>
               <div className="font-display text-lg text-ink">TidyNow</div>
-                <div className="text-[15px] font-mono text-ink/60">Cleaner spaces · Better living</div>
+              <div className="text-xs text-ink/55">Cleaner spaces · Better living</div>
             </div>
           </div>
           <p className="text-sm text-ink/60 leading-relaxed max-w-xs">
@@ -21,7 +23,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.14em] text-ink/50 mb-4">
+          <p className="text-xs text-ink/50 mb-4">
             Explore
           </p>
           <ul className="space-y-2 text-sm text-ink/70">
@@ -36,20 +38,38 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/agency" className="hover:text-ink transition-colors">
-                Agency Portal
+              <Link to="/about" className="hover:text-ink transition-colors">
+                About
               </Link>
             </li>
             <li>
-              <Link to="/book" className="hover:text-ink transition-colors">
-                Pricing
+              <Link to="/contact" className="hover:text-ink transition-colors">
+                Contact
               </Link>
             </li>
           </ul>
         </div>
 
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.14em] text-ink/50 mb-4">
+          <p className="text-xs text-ink/50 mb-4">
+            Work with us
+          </p>
+          <ul className="space-y-2 text-sm text-ink/70">
+            <li>
+              <Link to="/cleaner/apply" className="hover:text-ink transition-colors">
+                Become a Cleaner
+              </Link>
+            </li>
+            <li>
+              <Link to="/support/apply" className="hover:text-ink transition-colors">
+                Join Our Support Team
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <p className="text-xs text-ink/50 mb-4">
             Serving
           </p>
           <p className="text-sm text-ink/70 leading-relaxed">
@@ -60,8 +80,10 @@ export default function Footer() {
           </p>
         </div>
       </div>
-      <div className="border-t border-mist px-6 py-6 text-center font-mono text-[11px] uppercase tracking-[0.14em] text-ink/40">
-        © {new Date().getFullYear()} TidyNow — Premium Home Cleaning
+      <div className="border-t border-mist px-6 py-6">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 text-center text-xs text-ink/40 sm:flex-row sm:text-left">
+          <p>© {new Date().getFullYear()} TidyNow — Premium Home Cleaning</p>
+        </div>
       </div>
     </footer>
   );
