@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Book from "./pages/Book";
 import Cleaners from "./pages/Cleaners";
 import About from "./pages/About";
+import Privacy from "./pages/Privacy";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -43,6 +44,7 @@ export default function App() {
         <Route path="/book" element={<Book />} />
         <Route path="/cleaners" element={<Cleaners />} />
         <Route path="/about" element={<About />} />
+        <Route path="/privacy" element={<Privacy />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/pay/callback" element={<PaymentCallback />} />

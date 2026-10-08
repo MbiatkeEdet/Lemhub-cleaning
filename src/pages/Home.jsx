@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Reveal from "../components/Reveal";
 import SealBadge from "../components/SealBadge";
@@ -144,14 +144,7 @@ function Hero() {
         </div>
 
         <div className="relative animate-fade-up">
-          <div className="relative overflow-hidden rounded-lg border border-mist">
-            <img
-              src="/cleaning2.jpg"
-              alt="TidyNow cleaners tidying a bright Port Harcourt apartment"
-              className="h-[420px] w-full object-cover md:h-[500px]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent" />
-          </div>
+          <HeroMedia />
 
           <div className="absolute -left-4 bottom-6 flex items-center gap-3 rounded-lg border border-mist bg-paper px-4 py-3 sm:-left-6">
             <SealBadge size={44} />
@@ -172,6 +165,77 @@ function Hero() {
         </div>
       </div>
     </section>
+  );
+}
+
+function HeroMedia() {
+  const videoRef = useRef(null);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return undefined;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+
+    let started = false;
+    const start = () => {
+      if (started) return;
+      started = true;
+      video.src = "/heroVid.mp4";
+      video.load();
+    };
+
+    let idleId;
+    let timeoutId;
+    if ("requestIdleCallback" in window) {
+      idleId = window.requestIdleCallback(start, { timeout: 2500 });
+    } else {
+      timeoutId = window.setTimeout(start, 1200);
+    }
+
+    return () => {
+      if (idleId != null) window.cancelIdleCallback(idleId);
+      if (timeoutId != null) window.clearTimeout(timeoutId);
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+    };
+  }, []);
+
+  function reveal() {
+    const video = videoRef.current;
+    if (!video) return;
+    const play = video.play();
+    if (play && typeof play.then === "function") {
+      play.then(() => setReady(true)).catch(() => {});
+    } else {
+      setReady(true);
+    }
+  }
+
+  return (
+    <div className="relative overflow-hidden rounded-lg border border-mist">
+      <img
+        src="/cleaning2.jpg"
+        alt="TidyNow cleaners tidying a bright Port Harcourt apartment"
+        className="h-[420px] w-full object-cover md:h-[500px]"
+        fetchPriority="high"
+      />
+      <video
+        ref={videoRef}
+        muted
+        playsInline
+        loop
+        preload="none"
+        onCanPlay={reveal}
+        aria-hidden="true"
+        className={
+          "absolute inset-0 h-full w-full object-cover transition-opacity duration-700 " +
+          (ready ? "opacity-100" : "opacity-0")
+        }
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent" />
+    </div>
   );
 }
 
