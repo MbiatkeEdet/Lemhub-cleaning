@@ -47,6 +47,11 @@ export default function Footer() {
                 Contact
               </Link>
             </li>
+            <li>
+              <Link to="/privacy" className="hover:text-ink transition-colors">
+                Privacy
+              </Link>
+            </li>
           </ul>
         </div>
 
